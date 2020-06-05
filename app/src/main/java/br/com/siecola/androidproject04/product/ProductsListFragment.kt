@@ -36,7 +36,10 @@ class ProductsListFragment : Fragment() {
             this.findNavController()
                 .navigate(ProductsListFragmentDirections.actionShowProductDetail(it.code!!))
         })
-
+        binding.fab.setOnClickListener { view ->
+            this.findNavController()
+                .navigate(ProductsListFragmentDirections.actionShowProductDetail(null))
+        }
         return binding.root
 
     }

@@ -5,24 +5,29 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import br.com.siecola.androidproject04.persistence.Product
+import br.com.siecola.androidproject04.persistence.ProductRepository
 
 private const val TAG = "ProductDetailViewModel"
 
-class ProductDetailViewModel(private val code: String): ViewModel() {
+class ProductDetailViewModel(private val code: String?): ViewModel() {
 
-    private val _product = MutableLiveData<Product>()
-        val product: LiveData<Product>
-        get() = _product
+    lateinit var product: MutableLiveData<Product>
 
     init {
-        getProduct()
+        if (code != null) {
+            getProduct(code)
+        } else {
+            product = MutableLiveData<Product>()
+            product.value = Product()
+        }
     }
-
-    private fun getProduct() {
-
+    private fun getProduct(productCode: String) {
+        product = ProductRepository.getProductByCode(productCode)
     }
-
     override fun onCleared() {
+        if (product.value != null) {
+            ProductRepository.saveProduct(product.value!!)
+        }
         super.onCleared()
     }
 
