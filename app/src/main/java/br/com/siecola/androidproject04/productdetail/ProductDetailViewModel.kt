@@ -28,5 +28,10 @@ class ProductDetailViewModel(private val code: String?): ViewModel() {
         }
         super.onCleared()
     }
-
+    fun deleteProduct() {
+        if (product.value?.id != null) {
+            ProductRepository.deleteProduct(product.value!!.id!!)
+            product.value = null
+        }
+    }
 }
