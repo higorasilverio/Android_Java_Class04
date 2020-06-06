@@ -8,6 +8,8 @@ import androidx.navigation.fragment.findNavController
 import br.com.siecola.androidproject04.R
 import br.com.siecola.androidproject04.databinding.FragmentProductDetailBinding
 import com.google.firebase.analytics.FirebaseAnalytics
+import com.google.firebase.ktx.Firebase
+import com.google.firebase.remoteconfig.ktx.remoteConfig
 
 class ProductDetailFragment : Fragment() {
     private var productCode: String? = null
@@ -26,7 +28,8 @@ class ProductDetailFragment : Fragment() {
         val productDetailViewModelFactory = ProductDetailViewModelFactory(productCode)
         binding.productDetailViewModel = ViewModelProviders.of(
             this, productDetailViewModelFactory).get(ProductDetailViewModel::class.java)
-        setHasOptionsMenu(true)
+        val remoteConfig = Firebase.remoteConfig
+        setHasOptionsMenu(remoteConfig.getBoolean("delete_detail_view"))
         return binding.root
     }
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
