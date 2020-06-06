@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation_graph"
     app:startDestination="@id/fragmentProductsList">
+
     <fragment
         android:id="@+id/fragmentProductsList"
         android:name="br.com.siecola.androidproject04.product.ProductsListFragment"
@@ -13,6 +14,7 @@
             android:id="@+id/action_showProductDetail"
             app:destination="@id/fragmentProductDetail" />
     </fragment>
+
     <fragment
         android:id="@+id/fragmentProductDetail"
         android:name="br.com.siecola.androidproject04.productdetail.ProductDetailFragment"
@@ -23,4 +25,5 @@
             app:nullable="true"
             app:argType="string" />
     </fragment>
+
 </navigation>

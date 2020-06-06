@@ -41,7 +41,6 @@ class ProductsListFragment : Fragment() {
                 .navigate(ProductsListFragmentDirections.actionShowProductDetail(null))
         }
         return binding.root
-
     }
 
 }
